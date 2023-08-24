@@ -1,6 +1,11 @@
 ﻿using BookStore.User.Context;
 using BookStore.User.Entity;
 using BookStore.User.Interface;
+using BookStore.User.Migrations;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace BookStore.User.Service
 {
@@ -51,5 +56,38 @@ namespace BookStore.User.Service
             }
         }
 
+
+         public string loginUser(string email, string password)
+        {
+            try
+            {
+                UserEntity result = _dbContext.Users.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+                if (result != null)
+                {
+                    return GenerateToken(result.Email, result.UserID);
+                }
+
+                return null;
+
+            }catch(Exception ex) { throw ex; }
+        }
+
+        private string GenerateToken(string email, int userID)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                new Claim("Email",email),
+                new Claim("UserID",userID.ToString())
+            };
+            var token = new JwtSecurityToken(_configuration["Jwt:Issuer"],
+                _configuration["Jwt:Audience"],
+                claims,
+                expires: DateTime.Now.AddMinutes(15),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
     }
 }

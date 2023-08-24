@@ -31,5 +31,20 @@ namespace BookStore.User.Controllers
             return BadRequest(new ResponseModel<UserEntity> { Status = false, Message = "unsuccesfull to add user", Data = null });
         }
 
+
+        [HttpPost("UserLogin")]
+        public IActionResult UserLogin(string email, string password)
+        {
+            string token = _userRepo.loginUser(email, password);
+
+            if (token != null)
+            {
+                return Ok(new ResponseModel<string> { Status = true, Message = "succesfully login", Data = token });
+            }
+
+            return NotFound(new ResponseModel<string> { Status = false, Message = "unsuccesfull login" });
+        }
+
+
     }
 }
