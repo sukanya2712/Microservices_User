@@ -22,7 +22,8 @@ namespace BookStore.User.Service
                 userEntity.FirstName = user.FirstName;
                 userEntity.LastName = user.LastName;
                 userEntity.Email = user.Email;
-                userEntity.Password = user.Password;
+               
+                userEntity.Password = EncodePasswordToBase64(user.Password);
                 userEntity.CreatedAt = DateTime.Now;
                 userEntity.UpdatedAt = DateTime.Now;
                 userEntity.Address = user.Address;
@@ -32,6 +33,22 @@ namespace BookStore.User.Service
 
             }
             catch (Exception ex) { throw ex; }
+        }
+
+        public static string EncodePasswordToBase64(string password)
+        {
+            try
+            {
+                byte[] encData_byte = new byte[password.Length];
+                encData_byte = System.Text.Encoding.UTF8.GetBytes(password);
+                string encodedData = Convert.ToBase64String(encData_byte);
+                return encodedData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
         }
 
     }
