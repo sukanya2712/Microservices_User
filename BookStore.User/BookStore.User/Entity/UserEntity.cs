@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace BookStore.User.Entity
 {
@@ -34,5 +35,10 @@ namespace BookStore.User.Entity
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
+
+       
+        public string Address { get; set; }
+       
+
     }
 }
