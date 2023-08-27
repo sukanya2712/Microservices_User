@@ -2,6 +2,7 @@
 using BookStore.User.Entity;
 using BookStore.User.Interface;
 using BookStore.User.Migrations;
+using BookStore.User.Model;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -59,22 +60,31 @@ namespace BookStore.User.Service
 
          public string loginUser(string email, string password)
         {
-            try
-            {
-                UserEntity result = _dbContext.Users.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
-                if (result != null)
+                string EncodedPassword = EncodePasswordToBase64(password);
+                var CheckEmailExist = _dbContext.Users.FirstOrDefault(e => e.Email == email);
+                if (CheckEmailExist != null)
                 {
-                    return GenerateToken(result.Email, result.UserID);
+                    var PassWord = _dbContext.Users.FirstOrDefault(e => e.Password == EncodedPassword);
+
+                    if (PassWord != null)
+                    {
+                        var token = GenerateToken(CheckEmailExist.Email, CheckEmailExist.UserID);
+                        return token;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
                 }
-
                 return null;
-
-            }catch(Exception ex) { throw ex; }
+          
+            
         }
 
         private string GenerateToken(string email, int userID)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])); 
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
@@ -88,6 +98,59 @@ namespace BookStore.User.Service
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+
+        public ForgetPassword UserForgotPassword(string email)
+        {
+            try
+            {
+                var result = _dbContext.Users.Where(x => x.Email == email).FirstOrDefault();
+                ForgetPassword forgetPassWordModel = new ForgetPassword();
+                forgetPassWordModel.Email = result.Email;
+                forgetPassWordModel.Token = GenerateToken(result.Email, result.UserID);
+                forgetPassWordModel.UserID = result.UserID;
+                return forgetPassWordModel;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool CheckEmail(string email)
+        {
+            try
+            {
+                bool emailexists = _dbContext.Users.Any(x => x.Email == email);
+                if (emailexists)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ResetPassword ResetPassword(string email, ResetPassword resetPassword)
+        {
+            
+                if (resetPassword.ConfirmPassword.Equals(resetPassword.password))
+                {
+                    var result = _dbContext.Users.Where(x => x.Email == email).FirstOrDefault();
+                    result.Password = EncodePasswordToBase64(resetPassword.password);
+                    _dbContext.SaveChanges();
+                }
+                return resetPassword;
+            
+           
+
         }
     }
 }

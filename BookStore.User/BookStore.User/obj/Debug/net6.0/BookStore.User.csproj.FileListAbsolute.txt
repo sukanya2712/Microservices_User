@@ -86,3 +86,10 @@ C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\obj\Debug\net6
 C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\obj\Debug\net6.0\BookStore.User.pdb
 C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\obj\Debug\net6.0\BookStore.User.genruntimeconfig.cache
 C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\obj\Debug\net6.0\ref\BookStore.User.dll
+C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\bin\Debug\net6.0\MassTransit.dll
+C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\bin\Debug\net6.0\MassTransit.Abstractions.dll
+C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\bin\Debug\net6.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\bin\Debug\net6.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\Sukanay\Desktop\BookStore2\BookStore.User\BookStore.User\bin\Debug\net6.0\System.Threading.Channels.dll
