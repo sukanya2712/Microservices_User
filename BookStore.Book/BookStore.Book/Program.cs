@@ -1,4 +1,6 @@
 using BookStore.Book.Context;
+using BookStore.Book.Interface;
+using BookStore.Book.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Book
@@ -13,7 +15,7 @@ namespace BookStore.Book
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoreBookConnection"));
             });
-
+            builder.Services.AddTransient<IBookRepo, BookRepo>();
             // Add services to the container.
 
             builder.Services.AddControllers();
