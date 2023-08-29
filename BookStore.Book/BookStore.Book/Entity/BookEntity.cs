@@ -25,6 +25,15 @@ namespace BookStore.Book.Entity
         [DataType(DataType.Text)]
         public string Genre { get; set; }
 
+        
+        public int BookQty { get; set; }
+
+        public float DiscountedPri { get; set; }
+
+        public float ListPrice { get; set; }
+
+        public float ratings { get; set; }
+
 
     }
 }

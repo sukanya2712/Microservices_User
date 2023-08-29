@@ -19,6 +19,10 @@ namespace BookStore.Book.Service
             bookEntity.Title = book.Title;
             bookEntity.Description = book.Description;
             bookEntity.Genre = book.Genre;
+            bookEntity.DiscountedPri=book.DiscountedPri;
+            bookEntity.BookQty = book.BookQty;
+            bookEntity.ListPrice = book.ListPrice;
+            bookEntity.ratings = book.ratings;
             dbContext.Books.Add(bookEntity);
             dbContext.SaveChanges();
             return bookEntity;

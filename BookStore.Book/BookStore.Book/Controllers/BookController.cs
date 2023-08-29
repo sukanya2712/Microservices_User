@@ -11,10 +11,12 @@ namespace BookStore.Book.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookRepo _bookRepo;
+        public ResponseModel<BookEntity> response;
 
         public BookController(IBookRepo _bookRepo)
         {
             this._bookRepo = _bookRepo;
+            response = new ResponseModel<BookEntity>();
         }
 
         [Route("AddUsers")]
@@ -49,17 +51,22 @@ namespace BookStore.Book.Controllers
 
 
         [Route("GetBookbyId")]
-        [HttpPost]
+        [HttpGet]
 
-        public IActionResult GetBookbyId(int id)
+        public ResponseModel<BookEntity> GetBookbyId(int id)
         {
             var result = _bookRepo.getBookbyId(id);
-
+               
             if (result != null)
             {
-                return Ok(new ResponseModel<BookEntity> { Status = true, Message = "succesfully  ", Data = result });
+                response.Data = result;
             }
-            return BadRequest(new ResponseModel<BookEntity> { Status = false, Message = "unsuccesfull  ", Data = null });
+            else
+            {
+                response.Status = false;
+                response.Message = "";
+            }
+            return response;
         }
 
 

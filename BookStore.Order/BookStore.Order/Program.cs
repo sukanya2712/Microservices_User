@@ -1,3 +1,8 @@
+using BookStore.Order.Context;
+using BookStore.Order.Interface;
+using BookStore.Order.Service;
+using Microsoft.EntityFrameworkCore;
+
 namespace BookStore.Order
 {
     public class Program
@@ -5,6 +10,14 @@ namespace BookStore.Order
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<OrderDBContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoreOrderConnection"));
+            });
+            builder.Services.AddTransient<IBookServic, BookServic>();
+            
+            builder.Services.AddTransient<IOrderService, OrderService>();
 
             // Add services to the container.
 
@@ -23,7 +36,7 @@ namespace BookStore.Order
             }
 
             app.UseHttpsRedirection();
-
+           
             app.UseAuthorization();
 
 

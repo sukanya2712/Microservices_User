@@ -33,17 +33,29 @@ namespace BookStore.Book.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BookQty")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("DiscountedPri")
+                        .HasColumnType("real");
 
                     b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("ListPrice")
+                        .HasColumnType("real");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("ratings")
+                        .HasColumnType("real");
 
                     b.HasKey("BookId");
 

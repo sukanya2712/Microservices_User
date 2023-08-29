@@ -2,8 +2,8 @@
 {
     public class ResponseModel<T>
     {
-        public bool Status { get; set; }
-        public string Message { get; set; }
+        public bool Status { get; set; } = true;
+        public string Message { get; set; } = "Sucessful";
         public T Data { get; set; }
     }
 }
