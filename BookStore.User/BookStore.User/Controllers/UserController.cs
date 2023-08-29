@@ -100,7 +100,19 @@ namespace BookStore.User.Controllers
             //}
 
 
+
         }
 
+
+        [Authorize][HttpGet("Display")] 
+        public IActionResult GetUserProfile() 
+        { 
+            int userID = Convert.ToInt32(User.FindFirst("UserID").Value);
+            if (userID != null) {
+                UserEntity user = _userRepo.GetUserProfile(userID);
+                return Ok(new ResponseModel<UserEntity> { Status = true, Message = "user Displayed succesfully", Data = user }); 
+            } 
+            return BadRequest(new ResponseModel<string> { Status = false, Message = "unable to Display" }); 
+        }
     }
 }

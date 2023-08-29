@@ -13,5 +13,7 @@ namespace BookStore.User.Interface
         public bool CheckEmail(string email);
 
         public ResetPassword ResetPassword(string email, ResetPassword resetPassword);
+
+        public UserEntity GetUserProfile(int userID);
     }
 }

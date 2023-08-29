@@ -152,5 +152,8 @@ namespace BookStore.User.Service
            
 
         }
+
+        public UserEntity GetUserProfile(int userID) { var result = _dbContext.Users.Where(x => x.UserID == userID).FirstOrDefault(); return result; }
+
     }
 }

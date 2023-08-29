@@ -12,10 +12,12 @@ namespace BookStore.Order.Controllers
     {
         private readonly IBookServic bookServices;
         private readonly IOrderService orderServices;
-        public OrderController( IBookServic bookServices, IOrderService orderServices)
+        private readonly IUserService userService;
+        public OrderController( IBookServic bookServices, IOrderService orderServices, IUserService userService)
         {
             this.bookServices = bookServices;
             this.orderServices = orderServices;
+            this.userService = userService;
         }
 
 
@@ -28,6 +30,20 @@ namespace BookStore.Order.Controllers
                 return Ok(book);
             }
             return BadRequest("unable to get book details");
+        }
+
+        [HttpGet("getUserDetails")]
+        public async Task<IActionResult> GetUserDetails()
+        {
+            string token = Request.Headers.Authorization.ToString();
+            token = token.Substring("Bearer".Length);
+            UserEntity user = await userService.GetUserDetails(token);
+           
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return BadRequest("unable to get user details");
         }
     }
 }
