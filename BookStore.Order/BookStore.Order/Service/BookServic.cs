@@ -7,11 +7,11 @@ namespace BookStore.Order.Service
 {
     public class BookServic : IBookServic
     {
-        private readonly IConfiguration configuration;
-        public BookServic(IConfiguration configuration) 
-        {
-            this.configuration = configuration;   
-        }
+        //private readonly IConfiguration configuration;
+        //public BookServic(IConfiguration configuration) 
+        //{
+        //    this.configuration = configuration;   
+        //}
         public async Task<BookEntity> GetBookDetails(int id)
         {
             HttpClient client = new HttpClient(); 
