@@ -16,6 +16,7 @@ namespace BookManagementCQRS
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoreCQRSConnection"));
             });
            builder.Services.AddTransient<ICommandService, CommandService>();
+            builder.Services.AddTransient<IQueryService, QueryService>();
 
             // Add services to the container.
 

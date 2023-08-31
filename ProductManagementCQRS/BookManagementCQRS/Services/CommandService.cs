@@ -44,5 +44,18 @@ namespace BookManagementCQRS.Services
             return null;
         }
 
+
+        public bool DeleteProductfromTable(int id)
+        {
+            InserUpdateModel product = _dbContext.Product.FirstOrDefault(x => x.ProductId == id);
+            if (product != null)
+            {
+                _dbContext.Product.Remove(product);
+                _dbContext.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
     }
 }

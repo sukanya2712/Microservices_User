@@ -42,5 +42,17 @@ namespace BookManagementCQRS.Controllers
             }
             return BadRequest(new ResponseModel<string> { Status = false, Message = "unable to update product" });
         }
+
+
+        [HttpDelete("DeleteProduct")]
+        public IActionResult DeleteProduct(int productID)
+        {
+            bool result = commandService.DeleteProductfromTable(productID);
+            if (result != null)
+            {
+                return Ok(new ResponseModel<bool> { Status = true, Message = "successfully deleted product" });
+            }
+            return BadRequest(new ResponseModel<string> { Status = false, Message = "unable to delete product" });
+        }
     }
 }
