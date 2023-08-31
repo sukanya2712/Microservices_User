@@ -1,5 +1,8 @@
 using BookManagementCQRS.Entity;
+using BookManagementCQRS.Interface;
+using BookManagementCQRS.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Input;
 
 namespace BookManagementCQRS
 {
@@ -12,7 +15,7 @@ namespace BookManagementCQRS
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BookStoreCQRSConnection"));
             });
-           // builder.Services.AddTransient<IBookServic, BookServic>();
+           builder.Services.AddTransient<ICommandService, CommandService>();
 
             // Add services to the container.
 
