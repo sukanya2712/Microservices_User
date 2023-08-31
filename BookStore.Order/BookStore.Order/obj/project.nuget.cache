@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NN4j3FakUMBkp0XAUxyqeKoahOxGpiti8sP7jTW7s3GQTaQZBRf2QAfoAJi3mPqqqq5jBtlrmBBlQJfz9KBaYw==",
+  "dgSpecHash": "vriFALX98Ikt5KJyh2OrHijwJNAmCN1VM2NwdzsPkl9i20ydNNXWUW7TOz2HBNP0imwput/EFTWgsTjpfLcNCA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sukanay\\Desktop\\BookStore2\\BookStore.Order\\BookStore.Order\\BookStore.Order.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "C:\\Users\\Sukanay\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\Sukanay\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Sukanay\\.nuget\\packages\\microsoft.extensions.dependencymodel\\7.0.0\\microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
+    "C:\\Users\\Sukanay\\.nuget\\packages\\microsoft.extensions.http\\7.0.0\\microsoft.extensions.http.7.0.0.nupkg.sha512",
     "C:\\Users\\Sukanay\\.nuget\\packages\\microsoft.extensions.logging\\7.0.0\\microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "C:\\Users\\Sukanay\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Sukanay\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",

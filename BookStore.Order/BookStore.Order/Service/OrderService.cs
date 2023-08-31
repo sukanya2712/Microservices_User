@@ -71,7 +71,6 @@ namespace BookStore.Order.Service
             {
                 orderDBContext.Orders.Remove(orderEntity);
                 orderDBContext.SaveChanges();
-
                 return true;
             }
             return false;

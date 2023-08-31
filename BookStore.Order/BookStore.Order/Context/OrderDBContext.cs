@@ -8,5 +8,6 @@ namespace BookStore.Order.Context
         public OrderDBContext(DbContextOptions<OrderDBContext>dbContextOptions) :base(dbContextOptions) { }
 
         public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<WishEntity> Wish { get; set; }
     }
 }
