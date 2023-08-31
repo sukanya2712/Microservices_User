@@ -25,6 +25,24 @@ namespace BookManagementCQRS.Services
             return null;
         }
 
-       
+        public InserUpdateModel UpdateProductTable(InserUpdateModel updateProduct, int productID)
+        {
+            InserUpdateModel product = _dbContext.Product.FirstOrDefault(x => x.ProductId == productID);
+            if (product != null)
+            {
+                product.ProductName = updateProduct.ProductName;
+                product.Description = updateProduct.Description;
+                product.Quantity = updateProduct.Quantity;
+                product.Price = updateProduct.Price;
+                product.Addedon = DateTime.Now; //updated 
+                product.AddedBy = updateProduct.AddedBy;
+
+
+                _dbContext.SaveChanges();
+                return product;
+            }
+            return null;
+        }
+
     }
 }

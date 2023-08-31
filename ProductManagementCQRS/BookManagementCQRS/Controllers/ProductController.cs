@@ -31,5 +31,16 @@ namespace BookManagementCQRS.Controllers
         }
 
 
+
+        [HttpPut("updateProduct")]
+        public IActionResult UpdateProduct(InserUpdateModel updateProduct, int productID)
+        {
+            InserUpdateModel product = commandService.UpdateProductTable(updateProduct, productID);
+            if (product != null)
+            {
+                return Ok(new ResponseModel<InserUpdateModel> { Status = true, Message = "successfully update product", Data = product });
+            }
+            return BadRequest(new ResponseModel<string> { Status = false, Message = "unable to update product" });
+        }
     }
 }
